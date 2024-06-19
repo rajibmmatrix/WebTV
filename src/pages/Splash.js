@@ -1,28 +1,30 @@
 import React from "react";
-import {
-  Router,
-  Route,
-  browserHistory,
-  IndexRoute,
-  Navigate,
-} from "react-router";
+import videojs from "video.js";
 
 export default class Splash extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {};
+    this.onVideoEnded = this.onVideoEnded.bind(this);
   }
 
   componentDidMount() {
-    console.log("Splash");
+    this.props.router.replace("/home");
+
+    // this.player = videojs(this.videoNode);
+    // this.player.on("ended", this.onVideoEnded);
+  }
+
+  onVideoEnded() {
     this.props.router.replace("/home");
   }
 
   render() {
     return (
-      <div id="container">
+      <div data-vjs-player id="container">
         <video
+          ref={(node) => (this.videoNode = node)}
           id="my-video"
           class="video-js"
           controls

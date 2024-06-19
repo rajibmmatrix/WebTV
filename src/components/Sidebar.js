@@ -1,5 +1,5 @@
 import React from "react";
-import ReactTV from "react-tv";
+import { Link } from "react-router";
 import { Focusable, VerticalList } from "react-key-navigation";
 
 class ToogleItem extends React.Component {
@@ -18,7 +18,7 @@ class ToogleItem extends React.Component {
         onBlur={() => this.setState({ active: false })}
       >
         <div class={"item " + (this.state.active ? "item-focus" : "")}>
-          <i class={"fa fa-" + this.props.icon}></i> {this.props.children}
+          <img src={this.props.icon} /> {this.props.children}
         </div>
       </Focusable>
     );
@@ -43,16 +43,22 @@ export default class Sidebar extends React.Component {
       <div id="sidebar" class={this.state.active ? "focused" : ""}>
         <div id="icons">
           <div>
-            <span class="fa fa-home"></span>
+            <img src="/src/assets/icons/home.svg" />
           </div>
           <div>
-            <span class="fa fa-star"></span>
+            <img src="/src/assets/icons/news.svg" />
           </div>
           <div>
-            <span class="fa fa-music"></span>
+            <img src="/src/assets/icons/tv.svg" />
           </div>
           <div>
-            <span class="fa fa-ellipsis-v"></span>
+            <img src="/src/assets/icons/fm.svg" />
+          </div>
+          <div>
+            <img src="/src/assets/icons/podcast.svg" />
+          </div>
+          <div>
+            <img src="/src/assets/icons/settings.svg" />
           </div>
         </div>
         <div id="menu">
@@ -62,12 +68,16 @@ export default class Sidebar extends React.Component {
             focusId="sidebar"
             retainLastFocus={true}
           >
-            <ToogleItem icon="user">Login</ToogleItem>
-            <ToogleItem icon="search">Search</ToogleItem>
-            <ToogleItem icon="home">Home</ToogleItem>
-            <ToogleItem icon="star">Star</ToogleItem>
-            <ToogleItem icon="music">Music</ToogleItem>
-            <ToogleItem icon="film">Film</ToogleItem>
+            <ToogleItem icon="/src/assets/icons/home.svg">Home</ToogleItem>
+            <ToogleItem icon="/src/assets/icons/news.svg">News</ToogleItem>
+            <ToogleItem icon="/src/assets/icons/tv.svg">TV</ToogleItem>
+            <ToogleItem icon="/src/assets/icons/fm.svg">FM</ToogleItem>
+            <ToogleItem icon="/src/assets/icons/podcast.svg">
+              Podcast
+            </ToogleItem>
+            <ToogleItem icon="/src/assets/icons/settings.svg">
+              Settings
+            </ToogleItem>
           </VerticalList>
         </div>
       </div>
