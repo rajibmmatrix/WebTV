@@ -1,14 +1,12 @@
 import React from "react";
+import { VerticalList } from "react-key-navigation";
 
-import Sidebar from "../components/Sidebar.js";
 import Banner from "../components/Banner.js";
 import List from "../components/List.js";
 
-import { VerticalList, HorizontalList } from "react-key-navigation";
-
 class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       active: null,
@@ -27,27 +25,20 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div id="container">
-        <HorizontalList>
-          <Sidebar />
-          <div class="mainbox">
-            <VerticalList navDefault>
-              <Banner />
-              <VerticalList id="content" onBlur={() => this.onBlurLists()}>
-                {this.lists.map((list, i) => (
-                  <List
-                    title={list}
-                    onFocus={() => this.changeFocusTo(i)}
-                    visible={
-                      this.state.active !== null ? i >= this.state.active : true
-                    }
-                  />
-                ))}
-              </VerticalList>
-            </VerticalList>
-          </div>
-        </HorizontalList>
-      </div>
+      <VerticalList navDefault>
+        <Banner />
+        <VerticalList id="content" onBlur={() => this.onBlurLists()}>
+          {this.lists.map((list, i) => (
+            <List
+              title={list}
+              onFocus={() => this.changeFocusTo(i)}
+              visible={
+                this.state.active !== null ? i >= this.state.active : true
+              }
+            />
+          ))}
+        </VerticalList>
+      </VerticalList>
     );
   }
 }
