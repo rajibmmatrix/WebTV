@@ -4,8 +4,8 @@ import ReactTV from "react-tv";
 import { Focusable, HorizontalList } from "react-key-navigation";
 
 class ToogleItem extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       active: false,
@@ -18,15 +18,22 @@ class ToogleItem extends React.Component {
         onFocus={() => this.setState({ active: true })}
         onBlur={() => this.setState({ active: false })}
       >
-        <div class={"item " + (this.state.active ? "item-focus" : "")}></div>
+        <div class={"item " + (this.state.active ? "item-focus" : "")}>
+          <img
+            src={this.props.image}
+            alt="poster"
+            width={"100%"}
+            height={"100%"}
+          />
+        </div>
       </Focusable>
     );
   }
 }
 
 export default class List extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this._lastFocus = null;
   }
 
@@ -78,15 +85,20 @@ export default class List extends React.Component {
               this._lastFocus = null;
             }}
           >
+            {this.props.content.map((item) => (
+              <ToogleItem
+                key={item._id}
+                image={item.thumbnail || item.image}
+              ></ToogleItem>
+            ))}
+            {/* <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
             <ToogleItem></ToogleItem>
-            <ToogleItem></ToogleItem>
-            <ToogleItem></ToogleItem>
-            <ToogleItem></ToogleItem>
+            <ToogleItem></ToogleItem> */}
           </HorizontalList>
         </div>
       </div>

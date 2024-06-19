@@ -3,6 +3,7 @@ import { VerticalList } from "react-key-navigation";
 
 import Banner from "../components/Banner.js";
 import List from "../components/List.js";
+import { getHomeContent } from "../services/api.js";
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,9 +11,14 @@ class Home extends React.Component {
 
     this.state = {
       active: null,
+      data: [],
     };
+  }
 
-    this.lists = ["Title 1", "Title 2", "Title 3", "Title 4"];
+  componentDidMount() {
+    getHomeContent()
+      .then((res) => this.setState({ data: res.data }))
+      .catch((err) => console.log("error: ", err));
   }
 
   changeFocusTo(index) {
@@ -28,15 +34,18 @@ class Home extends React.Component {
       <VerticalList navDefault>
         <Banner />
         <VerticalList id="content" onBlur={() => this.onBlurLists()}>
-          {this.lists.map((list, i) => (
-            <List
-              title={list}
-              onFocus={() => this.changeFocusTo(i)}
-              visible={
-                this.state.active !== null ? i >= this.state.active : true
-              }
-            />
-          ))}
+          {this.state.data.length !== 0 &&
+            this.state.data[0].category.map((list, i) => (
+              <List
+                key={list._id}
+                title={list.name}
+                content={list.content}
+                onFocus={() => this.changeFocusTo(i)}
+                visible={
+                  this.state.active !== null ? i >= this.state.active : true
+                }
+              />
+            ))}
         </VerticalList>
       </VerticalList>
     );
