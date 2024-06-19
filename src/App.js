@@ -1,8 +1,10 @@
 import React from "react";
-import Navigation from "react-key-navigation";
+import { Router, Route, browserHistory, IndexRoute } from "react-router";
 
-import Home from "./pages/Home.js";
 import Layout from "./components/Layout.js";
+
+import Splash from "./pages/Splash.js";
+import Home from "./pages/Home.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,11 +14,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <Navigation>
-        <Layout>
-          <Home />
-        </Layout>
-      </Navigation>
+      <Router history={browserHistory}>
+        <Route path="/" exact component={Splash} />
+        <Route path="/home" component={Layout}>
+          <IndexRoute component={Home} />
+        </Route>
+      </Router>
     );
   }
 }
