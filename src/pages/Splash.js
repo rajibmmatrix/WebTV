@@ -1,6 +1,9 @@
 import React from "react";
 import videojs from "video.js";
 
+const TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoie1widXNlcl9pZFwiOlwiNjRiMTEzMmU1YjQ0ZTkzYjhlNTQyOTdhXCIsXCJ1c2VyX3R5cGVcIjpcInVzZXJcIn0iLCJpYXQiOjE3MTg4NjM2NzYsImV4cCI6MTcyMTQ1NTY3Nn0.JZ3eWatNwffu54SYqoq0xhHdzrclFSYUAVOQ9Tm1yZU";
+
 export default class Splash extends React.Component {
   constructor(props) {
     super(props);
@@ -10,14 +13,16 @@ export default class Splash extends React.Component {
   }
 
   componentDidMount() {
-    this.props.router.replace("/home");
-
-    // this.player = videojs(this.videoNode);
-    // this.player.on("ended", this.onVideoEnded);
+    this.player = videojs(this.videoNode);
+    this.player.on("ended", this.onVideoEnded);
   }
 
   onVideoEnded() {
-    this.props.router.replace("/home");
+    if (TOKEN) {
+      localStorage.setItem("token", TOKEN);
+      return this.props.router.replace("/home");
+    }
+    return this.props.router.replace("/login");
   }
 
   render() {

@@ -1,45 +1,33 @@
 import React from "react";
-import ReactTV from "react-tv";
 
-import { Focusable } from "react-key-navigation";
+import { getBanners } from "../services/api";
 
 export default class Banner extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      active: false,
+      banners: [],
     };
   }
 
-  onBlur() {
-    this.setState({ active: false });
-  }
-
-  onFocus() {
-    this.setState({ active: true });
-  }
-
-  onEnterDown(event, navigation) {
-    console.log("enter pressed");
-    navigation.forceFocus("sidebar");
+  componentDidMount() {
+    getBanners()
+      .then(({ data }) => this.setState({ banners: data[0].data }))
+      .catch((err) => console.log("error: ", err));
   }
 
   render() {
     return (
-      <Focusable
-        onFocus={() => this.onFocus()}
-        onBlur={() => this.onBlur()}
-        onEnterDown={(e, n) => this.onEnterDown(e, n)}
-        navDefault
-      >
-        <div
-          class={this.state.active ? "search-box-placeholder-focus" : ""}
-          id="search-box-placeholder"
-        >
-          <i class="fa fa-search"></i>
+      <div class="banner">
+        <div class="banner-slides">
+          {this.state.banners.slice(0, 5).map((item) => (
+            <div class="banner-slide" key={item.banner_id}>
+              <img src={item.banner_image_tv} alt={item.banner_name} />
+            </div>
+          ))}
         </div>
-      </Focusable>
+      </div>
     );
   }
 }

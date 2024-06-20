@@ -1,19 +1,33 @@
-const API_URL = "https://api.hinxt.com/api/v1/";
+import config from "../config/config";
 
-const token = localStorage.getItem("token");
+export const api = (url, data) => {
+  const token = localStorage.getItem("token");
 
-export const getHomeContent = () => {
-  return fetch(API_URL + "mobile-home").then((res) => res.json());
+  let options = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Language": "EN",
+      "Authorization": token ? `Bearer ${token}` : undefined,
+      "Mobile": true,
+    },
+  };
+
+  if (data) {
+    options["method"] = "POST";
+    options["body"] = JSON.stringify(data);
+  }
+
+  return fetch(config.BASE_URL + url, options).then((res) => res.json());
 };
 
-export const getNewsContent = () => {
-  return fetch(API_URL + "mobile-home/getNewsPage").then((res) => res.json());
-};
+export const getBanners = () => api("home-page");
 
-export const getBreakingNewsContent = () => {
-  return fetch(API_URL + "breaking-news/all").then((res) => res.json());
-};
+export const getHomeContent = () => api("mobile-home");
 
-export const getRadioDetails = (id) => {
-  return fetch(API_URL + `radio-channel/${id}`).then((res) => res.json());
-};
+export const getNewsContent = () => api("mobile-home/getNewsPage");
+
+export const getBreakingNewsContent = () => api("breaking-news/all");
+
+export const getRadioDetails = (id) => api(`radio-channel/${id}`);
+
+export const login = (data) => api("auth/generateOTP", data);
