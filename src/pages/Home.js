@@ -33,7 +33,12 @@ class Home extends React.Component {
     return (
       <VerticalList navDefault>
         <Banner />
-        <VerticalList id="content" onBlur={() => this.onBlurLists()}>
+        <div class="all-audio-video-wrap">
+          <button class="active">All</button>
+          <button class="button-focus">Audio</button>
+          <button>Video</button>
+        </div>
+        <VerticalList id="content" class="audio-drama" onBlur={() => this.onBlurLists()}>
           {this.state.data.length !== 0 &&
             this.state.data[0].category.map((list, i) => (
               <List

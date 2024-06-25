@@ -13,6 +13,7 @@ export default class Splash extends React.Component {
   }
 
   componentDidMount() {
+    return this.onVideoEnded();
     this.player = videojs(this.videoNode);
     this.player.on("ended", this.onVideoEnded);
   }
@@ -39,7 +40,7 @@ export default class Splash extends React.Component {
           height="1080"
           data-setup="{}"
         >
-          <source src="src/assets/videos/splash.mp4" type="video/mp4" />
+          <source src="assets/videos/splash.mp4" type="video/mp4" />
         </video>
       </div>
     );

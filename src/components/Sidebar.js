@@ -43,22 +43,22 @@ export default class Sidebar extends React.Component {
       <div id="sidebar" class={this.state.active ? "focused" : ""}>
         <div id="icons">
           <div>
-            <img src="/src/assets/icons/home.svg" />
+            <img src="assets/icons/home.svg" />
           </div>
           <div>
-            <img src="/src/assets/icons/news.svg" />
+            <img src="assets/icons/news.svg" />
           </div>
           <div>
-            <img src="/src/assets/icons/tv.svg" />
+            <img src="assets/icons/tv.svg" />
           </div>
           <div>
-            <img src="/src/assets/icons/fm.svg" />
+            <img src="assets/icons/fm.svg" />
           </div>
           <div>
-            <img src="/src/assets/icons/podcast.svg" />
+            <img src="assets/icons/podcast.svg" />
           </div>
           <div>
-            <img src="/src/assets/icons/settings.svg" />
+            <img src="assets/icons/settings.svg" />
           </div>
         </div>
         <div id="menu">
@@ -68,15 +68,15 @@ export default class Sidebar extends React.Component {
             focusId="sidebar"
             retainLastFocus={true}
           >
-            <ToogleItem icon="/src/assets/icons/home.svg">Home</ToogleItem>
-            <ToogleItem icon="/src/assets/icons/news.svg">News</ToogleItem>
-            <ToogleItem icon="/src/assets/icons/tv.svg">TV</ToogleItem>
-            <ToogleItem icon="/src/assets/icons/fm.svg">FM</ToogleItem>
-            <ToogleItem icon="/src/assets/icons/podcast.svg">
-              Podcast
+            <ToogleItem icon="assets/icons/home.svg"> <p> Home</p></ToogleItem>
+            <ToogleItem icon="assets/icons/news.svg"> <p> News</p></ToogleItem>
+            <ToogleItem icon="assets/icons/tv.svg"><p>TV</p></ToogleItem>
+            <ToogleItem icon="assets/icons/fm.svg"><p>FM</p></ToogleItem>
+            <ToogleItem icon="assets/icons/podcast.svg">
+            <p>Podcast</p>
             </ToogleItem>
-            <ToogleItem icon="/src/assets/icons/settings.svg">
-              Settings
+            <ToogleItem icon="assets/icons/settings.svg">
+            <p> Settings</p>
             </ToogleItem>
           </VerticalList>
         </div>

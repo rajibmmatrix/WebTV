@@ -2,7 +2,7 @@ html, body {
   padding: 0;
   margin: 0;
   height: 100%;
-  background-color: #444;
+  background-color: #000000;
   font-family: sans-serif;
   overflow: hidden;
 }
@@ -17,36 +17,40 @@ html, body {
 
 #sidebar {
   position: absolute;
-  left: -300px;
+  left:-6px;
   top: 0;
-  width: 370px;
+  width: 73px;
   height: 100%;
-  box-shadow: 2px 0 20px 0 black;
+  
+  /* box-shadow: 2px 0 20px 0 black; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transition: left 0.5s, background-color 0.3s;
-  background-color: rgba(255, 255, 255, 0.1);
+  /* transition: left 0.5s, background-color 0.3s; */
+  /* background-color: rgba(255, 255, 255, 0.1); */
   z-index: 100;
 }
 
-#sidebar:hover {
+/* #sidebar:hover {
   background-color: rgba(255, 255, 255, 0.2);
-}
+} */
 
 #sidebar.focused {
-  left: 0;
+  width: 177px;
 }
 
 #icons {
   margin-right: 22px;
   transition: opacity 0.5s;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 #icons div {
   text-align: center;
-  margin: 30px 0;
+  /* margin: 30px 0; */
 }
 
 #icons .fa {
@@ -61,38 +65,58 @@ html, body {
 #menu {
   width: 100%;
   height: 100%;
-  background-color: red;
+  /* background-color: red; */
   position: absolute;
   left: 0;
   top: 0;
+  padding-left: 24px;
   opacity: 0;
   transition: opacity 0.5s;
   box-sizing: border-box;
-  padding-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  /* padding-top: 70px; */
 }
+#menu > span{
+  display: flex;
+  gap: 33px;
+  flex-direction: column;
+}
+#icons div img {
+  width: 28px;
+}
+#menu .item img{
+  width: 28px;
 
+}
 #sidebar.focused #menu {
   opacity: 1;
 }
 
 #menu .item {
-  height: 70px;
-  line-height: 70px;
+  /* height: 70px;
+  line-height: 70px; */
   color: white;
-  font-size: 25px;
-  padding-left: 90px;
+  font-size: 14px;
+  /* padding-left: 15px; */
   box-sizing: border-box;
   cursor: default;
   display: none;
   cursor: pointer;
+  gap: 12px;
 }
-
-#menu .item:hover {
+#menu .item p{
+  margin: 0
+}
+/* #menu .item:hover {
   background-color: rgba(0, 0, 0, 0.3);
-}
+} */
 
 #menu .item-focus {
-  background-color: white;
+  /* background-color: white; */
   color: red !important;
 }
 
@@ -101,14 +125,15 @@ html, body {
 }
 
 #sidebar.focused #menu .item {
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .mainbox {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 40px 0 120px;
+  padding: 40px 40px 0 120px;
 }
 
 #search-box-placeholder {
@@ -143,28 +168,31 @@ html, body {
 }
 
 #content h1 {
-  font-size: 30px;
-  height: 80px;
+  font-size: 17px;
+  height: 50px;
   padding: 0;
   margin: 0;
-  line-height: 80px;
+  line-height: 50px;
+  font-weight: 500;
+  color: #fff;
 }
 
 #content .item {
   display: inline-block;
-  width: 200px;
-  height: 200px;
-  padding-bottom: 50px;
+  width: 250px;
+  height: 150px;
+  /* padding-bottom: 50px; */
   background-color: #666;
   font-size: 1rem;
   margin-right: 20px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 #content .item-focus {
-  background-color: white;
-  transform: scale(1.08);
-  transition: all .2s ease-in-out;
+border: 3px solid #f24405;
+  /* transform: scale(1.08);
+  transition: all .2s ease-in-out; */
 }
 
 #content .animate {
@@ -188,6 +216,29 @@ html, body {
 .contentgroup.fading-out {
   opacity: 0;
   display: none;
+}
+.all-audio-video-wrap{
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.all-audio-video-wrap button{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: unset;
+  color: #ccc;
+
+}
+.all-audio-video-wrap button.active{
+  background: #f24405;
+  color: #fff;
+}
+.all-audio-video-wrap button.button-focus{
+  background: #212121;
 }
 
 .banner {
@@ -220,18 +271,18 @@ html, body {
 
 @keyframes banner-slide {
   0%, 20% {
-      transform: translateX(0%);
+    transform: translateX(0%);
   }
   25%, 45% {
-      transform: translateX(-100%);
+    transform: translateX(-100%);
   }
   50%, 70% {
-      transform: translateX(-200%);
+    transform: translateX(-200%);
   }
   75%, 95% {
-      transform: translateX(-300%);
+    transform: translateX(-300%);
   }
   100% {
-      transform: translateX(-400%);
+    transform: translateX(-400%);
   }
 }
